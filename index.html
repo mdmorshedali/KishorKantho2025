@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>কিশোরকন্ঠ মেধাবৃত্তি পরীক্ষা ২০২৫ - রাজশাহী জেলা পশ্চিম</title>
+<style>
+@font-face {
+  font-family: 'SolaimanLipi';
+  src: url('https://cdn.jsdelivr.net/gh/sohelamin/solaimanlipi@main/SolaimanLipi_22-02-2012.ttf');
+}
+
+body {
+  font-family: 'SolaimanLipi', sans-serif;
+  background: #f8fafc;
+  margin: 0;
+  padding: 0;
+  color: #222;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: linear-gradient(90deg, #1e3c72, #2a5298);
+  color: #fff;
+  padding: 25px 10px;
+  text-align: center;
+  border-bottom: 4px solid #162e5c;
+}
+header h1 {
+  font-size: 32px;
+  margin: 0;
+  letter-spacing: 1px;
+}
+header h2 {
+  font-size: 22px;
+  margin: 5px 0;
+  font-weight: normal;
+}
+header p {
+  font-size: 18px;
+  margin: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  flex: 1;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 25px 0;
+  flex-wrap: wrap;
+}
+.tab {
+  background: #e2e8f0;
+  padding: 10px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  color: #333;
+}
+.tab.active {
+  background: #1e3c72;
+  color: #fff;
+}
+
+.search-container {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.search-box {
+  flex: 1;
+  position: relative;
+}
+.search-box input {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 30px 0 0 30px;
+  border: 2px solid #2a5298;
+  border-right: none;
+  font-family: 'SolaimanLipi';
+  font-size: 18px;
+  outline: none;
+  text-align: center;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+.search-box input:focus {
+  box-shadow: 0 0 10px rgba(42,82,152,0.3);
+}
+.search-button {
+  background: #2a5298;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 0 30px 30px 0;
+  font-family: 'SolaimanLipi';
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+.search-button:hover {
+  background: #1e3c72;
+  transform: translateY(-1px);
+}
+
+.error-message {
+  color: #e53e3e;
+  font-size: 16px;
+  margin-top: 10px;
+  display: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  table-layout: fixed;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 17px;
+  word-wrap: break-word;
+}
+th {
+  background: #2A3B59;
+  color: #fff;
+  font-weight: bold;
+  border-bottom: 3px solid #1e3c72;
+}
+tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.result-box {
+  text-align: center;
+  margin: 20px 0;
+  background: #f1f7ff;
+  padding: 25px;
+  border-radius: 10px;
+  display: none;
+  border-left: 5px solid #2a5298;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.result-box h3 {
+  margin-top: 0;
+  color: #1e3c72;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.result-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0;
+  font-size: 20px;
+}
+.result-icon {
+  font-size: 24px;
+  margin-right: 15px;
+  width: 30px;
+  text-align: center;
+}
+.result-text {
+  text-align: left;
+  flex: 1;
+}
+
+.summary {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f1f7ff;
+  border-radius: 10px;
+  border-left: 5px solid #2a5298;
+  font-size: 18px;
+}
+
+footer {
+  background: #1e3c72;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 100px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    margin: 15px;
+  }
+  table {
+    font-size: 14px;
+  }
+  th, td {
+    padding: 8px 4px;
+  }
+  .search-wrapper {
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .search-box input {
+    border-radius: 30px;
+    border-right: 2px solid #2a5298;
+    margin-bottom: 10px;
+  }
+  .search-button {
+    border-radius: 30px;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🏫 কিশোরকন্ঠ ফাউন্ডেশন</h1>
+  <h2> কিশোরকন্ঠ মেধাবৃত্তি পরীক্ষা ২০২৫</h2>
+  <p>📍 রাজশাহী জেলা পশ্চিম</p>
+</header>
+
+<div class="container">
+
+  <div class="search-container">
+    <div class="search-wrapper">
+      <div class="search-box">
+        <input type="text" id="searchRoll" placeholder="🔍 রোল নম্বর লিখুন... যেমন 149010">
+      </div>
+      <button class="search-button" onclick="searchRoll()">সার্চ করুন</button>
+    </div>
+    <div class="error-message" id="errorMessage">
+      দয়া করে ইংরেজিতে রোল বসান এবং সার্চ করুন
+    </div>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <h3>🔍 সার্চ ফলাফল</h3>
+    <div class="result-item">
+      <div class="result-icon">🏫</div>
+      <div class="result-text"><strong>ভবন:</strong> <span id="resBuilding"></span></div>
+    </div>
+    <div class="result-item">
+      <div class="result-icon">🧾</div>
+      <div class="result-text"><strong>কক্ষ নং:</strong> <span id="resRoom"></span></div>
+    </div>
+    <div class="result-item">
+      <div class="result-icon">🎓</div>
+      <div class="result-text"><strong>শ্রেণী:</strong> <span id="resClass"></span></div>
+    </div>
+    <div class="result-item">
+      <div class="result-icon">👤</div>
+      <div class="result-text"><strong>লিঙ্গ:</strong> <span id="resGender"></span></div>
+    </div>
+    <div class="result-item">
+      <div class="result-icon">📋</div>
+      <div class="result-text"><strong>রোল নম্বর:</strong> <span id="resRoll"></span></div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('primary')">প্রাথমিক ভবন</div>
+    <div class="tab" onclick="showTab('secondary')">উচ্চ মাধ্যমিক ভবন</div>
+    <div class="tab" onclick="showTab('college')">কলেজ ভবন</div>
+  </div>
+
+  <div id="primary" class="tab-content">
+    <table>
+      <tr><th>কক্ষ নং</th><th>শ্রেণী</th><th>ছাত্র/ছাত্রী</th><th>রোল নং</th><th>মোট</th></tr>
+      
+      <tr><td rowspan="2">১০১</td><td>৪র্থ</td><td>ছাত্র</td><td>১৪৯০০১ - ১৪৯০১৫</td><td>১৫</td></tr>
+      <tr><td>৬ষ্ঠ</td><td>ছাত্রী</td><td>১৬৪১০৫ - ১৬৪১১৯</td><td>১৫</td></tr>
+      
+      <tr><td rowspan="2">১০২</td><td>৪র্থ</td><td>ছাত্র</td><td>১৪৯০১৬ - ১৪৯০৩৪</td><td>১৯</td></tr>
+      <tr><td>৬ষ্ঠ</td><td>ছাত্রী</td><td>১৬৪১২০ - ১৬৪১৩৮</td><td>১৯</td></tr>
+      
+      <tr><td rowspan="2">২০১</td><td>৪র্থ</td><td>ছাত্র</td><td>১৪৯০৩৫ - ১৪৯০৪৮</td><td>১৪</td></tr>
+      <tr><td>৬ষ্ঠ</td><td>ছাত্রী</td><td>১৬৪১৩৯ - ১৬৪১৫২</td><td>১৪</td></tr>
+      
+      <tr><td rowspan="2">২০২</td><td>৪র্থ</td><td>ছাত্র</td><td>১৪৯০৪৯ - ১৪৯০৬২</td><td>১৪</td></tr>
+      <tr><td>৬ষ্ঠ</td><td>ছাত্রী</td><td>১৬৪১৫৩ - ১৬৪১৬৬</td><td>১৪</td></tr>
+    </table>
+    
+    <div class="summary" id="primary-summary"></div>
+  </div>
+
+  <div id="secondary" class="tab-content" style="display:none;">
+    <table>
+      <tr><th>কক্ষ নং</th><th>শ্রেণী</th><th>ছাত্র/ছাত্রী</th><th>রোল নং</th><th>মোট</th></tr>
+      
+      <tr><td rowspan="4">১০১</td><td>৪র্থ</td><td>ছাত্র</td><td>১৪৯১৩৮ - ১৪৯১৪৮</td><td>১১</td></tr>
+      <tr><td>৫ম</td><td>ছাত্র</td><td>১৫৯০৭৯ - ১৫৯০৮৫</td><td>৭</td></tr>
+      <tr><td>৬ষ্ঠ</td><td>ছাত্রী</td><td>১৬৪১৬৭ - ১৬৪১৭৪</td><td>৮</td></tr>
+      <tr><td>৬ষ্ঠ</td><td>ছাত্র</td><td>১৬৯০০১ - ১৬৯০১০</td><td>১০</td></tr>
+      
+      <tr><td rowspan="3">১০২</td><td>৫ম</td><td>ছাত্র</td><td>১৫৯০৮৬ - ১৫৯১০৭</td><td>২২</td></tr>
+      <tr><td>৬ষ্ঠ</td><td>ছাত্র</td><td>১৬৯০১১ - ১৬৯০৩২</td><td>২২</td></tr>
+      <tr><td>৮ম</td><td>ছাত্র</td><td>১৮৯০৯৭ - ১৮৯১১৮</td><td>২২</td></tr>
+      
+      <tr><td rowspan="2">১০৩</td><td>৫ম</td><td>ছাত্র</td><td>১৫৯১০৮ - ১৫৯১২৯</td><td>২২</td></tr>
+      <tr><td>৮ম</td><td>ছাত্র</td><td>১৮৯১১৯ - ১৮৯১৪০</td><td>২২</td></tr>
+      
+      <tr><td rowspan="4">২০১</td><td>৫ম</td><td>ছাত্র</td><td>১৫৯১৩০ - ১৫৯১৪০</td><td>১১</td></tr>
+      <tr><td>৬ষ্ঠ</td><td>ছাত্র</td><td>১৬৯০৩৩ - ১৬৯০৩৭</td><td>৫</td></tr>
+      <tr><td>৭ম</td><td>ছাত্র</td><td>১৭৯১৫৫ - ১৭৯১৬৭</td><td>১৩</td></tr>
+      <tr><td>৮ম</td><td>ছাত্র</td><td>১৮৯১৪১ - ১৮৯১৫৯</td><td>১৯</td></tr>
+      
+      <tr><td rowspan="2">২০২</td><td>৭ম</td><td>ছাত্র</td><td>১৭৯১৬৮ - ১৭৯১৯১</td><td>২৪</td></tr>
+      <tr><td>৯ম</td><td>ছাত্র</td><td>১৯৯০০১ - ১৯৯০২৩</td><td>২৩</td></tr>
+      
+      <tr><td rowspan="3">২০৩</td><td>৬ষ্ঠ</td><td>ছাত্র</td><td>১৬৯০৩৮ - ১৬৯০৫৩</td><td>১৬</td></tr>
+      <tr><td>৭ম</td><td>ছাত্র</td><td>১৭৯১৯২ - ১৭৯১৯৫</td><td>৪</td></tr>
+      <tr><td>৯ম</td><td>ছাত্র</td><td>১৯৯০২৬ - ১৯৯০৪৫</td><td>২০</td></tr>
+      
+      <tr><td rowspan="5">৩০১</td><td>৬ষ্ঠ</td><td>ছাত্র</td><td>১৬৯০২৫ - ১৬৯০৫৪</td><td>৩০</td></tr>
+      <tr><td>৬ষ্ঠ</td><td>ছাত্র</td><td>১৬৯১৭৯</td><td>১</td></tr>
+      <tr><td>৯ম</td><td>ছাত্র</td><td>১৯৯০২৪ - ১৯৯০২৫</td><td>২</td></tr>
+      <tr><td>৯ম</td><td>ছাত্র</td><td>১৯৯০৪৬ - ১৯৯০৪৭</td><td>২</td></tr>
+      <tr><td>১০ম</td><td>ছাত্রী</td><td>১১৯০৩৫ - ১১৯০৫১</td><td>১৭</td></tr>
+    </table>
+    
+    <div class="summary" id="secondary-summary"></div>
+  </div>
+
+  <div id="college" class="tab-content" style="display:none;">
+    <table>
+      <tr><th>কক্ষ নং</th><th>শ্রেণী</th><th>ছাত্র/ছাত্রী</th><th>রোল নং</th><th>মোট</th></tr>
+      
+      <tr><td rowspan="4">১০১</td><td>৪র্থ</td><td>ছাত্রী</td><td>১৪৪১১২ - ১৪৯১৫৭</td><td>৪৬</td></tr>
+      <tr><td>৬ষ্ঠ</td><td>ছাত্রী</td><td>১৬৪০৭৩ - ১৬৪০৮৩</td><td>১১</td></tr>
+      <tr><td>৭ম</td><td>ছাত্রী</td><td>১৭৪১১১ - ১৭৪১৩০</td><td>২০</td></tr>
+      <tr><td>৯ম</td><td>ছাত্রী</td><td>১৯৪০৬৬ - ১৯৪০৮৫</td><td>২০</td></tr>
+      
+      <tr><td rowspan="3">১০২</td><td>৬ষ্ঠ</td><td>ছাত্রী</td><td>১৬৪০৮৪ - ১৬৪১০৪</td><td>২১</td></tr>
+      <tr><td>৭ম</td><td>ছাত্রী</td><td>১৭৪১৩১ - ১৭৪১৫৪</td><td>২৪</td></tr>
+      <tr><td>৯ম</td><td>ছাত্রী</td><td>১৯৪০৮৬ - ১৯৪১০০</td><td>১৫</td></tr>
+      
+      <tr><td rowspan="3">২০১</td><td>৪র্থ</td><td>ছাত্রী</td><td>১৪৪০৬৩ - ১৪৪০৮৮</td><td>২৬</td></tr>
+      <tr><td>৮ম</td><td>ছাত্রী</td><td>১৮৪০০১ - ১৮৪০২৬</td><td>২৬</td></tr>
+      <tr><td>১০ম</td><td>ছাত্রী</td><td>১১৪০০১ - ১১৪০২৬</td><td>২৬</td></tr>
+      
+      <tr><td rowspan="4">২০২</td><td>৪র্থ</td><td>ছাত্রী</td><td>১৪৪০৮৯ - ১৪৪১১১</td><td>২৩</td></tr>
+      <tr><td>৭ম</td><td>ছাত্রী</td><td>১৭৪০০১ - ১৭৪০১৫</td><td>১৫</td></tr>
+      <tr><td>৮ম</td><td>ছাত্রী</td><td>১৮৪০৭৮ - ১৮৪০৯৬</td><td>১৯</td></tr>
+      <tr><td>১০ম</td><td>ছাত্রী</td><td>১১৪০২৭ - ১১৪০৩৪</td><td>৮</td></tr>
+      
+      <tr><td rowspan="3">২০৩</td><td>৫ম</td><td>ছাত্রী</td><td>১৫৪০০১ - ১৫৪০১৬</td><td>১৬</td></tr>
+      <tr><td>৭ম</td><td>ছাত্রী</td><td>১৭৪০১৬ - ১৭৪০৩১</td><td>১৬</td></tr>
+      <tr><td>৮ম</td><td>ছাত্রী</td><td>১৮৪০২৭ - ১৮৪০৪২</td><td>১৬</td></tr>
+      
+      <tr><td rowspan="3">২০৪</td><td>৫ম</td><td>ছাত্রী</td><td>১৫৪০১৭ - ১৫৪০৩০</td><td>১৪</td></tr>
+      <tr><td>৭ম</td><td>ছাত্রী</td><td>১৭৪০৩২ - ১৭৪০৪৫</td><td>১৪</td></tr>
+      <tr><td>৮ম</td><td>ছাত্রী</td><td>১৮৪০৪৩ - ১৮৪০৫৬</td><td>১৪</td></tr>
+      
+      <tr><td rowspan="3">২০৫</td><td>৫ম</td><td>ছাত্রী</td><td>১৫৪০৩১ - ১৫৪০৪৫</td><td>১৫</td></tr>
+      <tr><td>৭ম</td><td>ছাত্রী</td><td>১৭৪০৪৬ - ১৭৪০৬০</td><td>১৫</td></tr>
+      <tr><td>৮ম</td><td>ছাত্রী</td><td>১৮৪০৫৭ - ১৮৪০৭১</td><td>১৫</td></tr>
+      
+      <tr><td rowspan="4">২০৬</td><td>৫ম</td><td>ছাত্রী</td><td>১৫৪০৪৬ - ১৫৪০৭৫</td><td>৩০</td></tr>
+      <tr><td>৭ম</td><td>ছাত্রী</td><td>১৭৪০৬১ - ১৭৪১১০</td><td>৫০</td></tr>
+      <tr><td>৮ম</td><td>ছাত্রী</td><td>১৮৪০৭২ - ১৮৪০৭৩</td><td>২</td></tr>
+      <tr><td>৯ম</td><td>ছাত্রী</td><td>১৯৪০৪৮ - ১৯৪০৬৫</td><td>১৮</td></tr>
+    </table>
+    
+    <div class="summary" id="college-summary"></div>
+  </div>
+</div>
+
+<footer>
+  <p>এই সিস্টেমটি ডেভেলপ করেছেন আইটি বিভাগ - গোদাগাড়ী পশ্চিম সাংগঠনিক থানা শাখা</p>
+  <p>গোদাগাড়ী, রাজশাহী । </p>
+</footer>
+
+<script>
+const data = [
+  {building: 'প্রাথমিক ভবন', room: '১০১', cls: '৪র্থ', gender: 'ছাত্র', start: 149001, end: 149015},
+  {building: 'প্রাথমিক ভবন', room: '১০১', cls: '৬ষ্ঠ', gender: 'ছাত্রী', start: 164105, end: 164119},
+  
+  {building: 'প্রাথমিক ভবন', room: '১০২', cls: '৪র্থ', gender: 'ছাত্র', start: 149016, end: 149034},
+  {building: 'প্রাথমিক ভবন', room: '১০২', cls: '৬ষ্ঠ', gender: 'ছাত্রী', start: 164120, end: 164138},
+  
+  {building: 'প্রাথমিক ভবন', room: '২০১', cls: '৪র্থ', gender: 'ছাত্র', start: 149035, end: 149048},
+  {building: 'প্রাথমিক ভবন', room: '২০১', cls: '৬ষ্ঠ', gender: 'ছাত্রী', start: 164139, end: 164152},
+  
+  {building: 'প্রাথমিক ভবন', room: '২০২', cls: '৪র্থ', gender: 'ছাত্র', start: 149049, end: 149062},
+  {building: 'প্রাথমিক ভবন', room: '২০২', cls: '৬ষ্ঠ', gender: 'ছাত্রী', start: 164153, end: 164166},
+
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '১০১', cls: '৪র্থ', gender: 'ছাত্র', start: 149138, end: 149148},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '১০১', cls: '৫ম', gender: 'ছাত্র', start: 159079, end: 159085},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '১০১', cls: '৬ষ্ঠ', gender: 'ছাত্রী', start: 164167, end: 164174},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '১০১', cls: '৬ষ্ঠ', gender: 'ছাত্র', start: 169001, end: 169010},
+  
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '১০২', cls: '৫ম', gender: 'ছাত্র', start: 159086, end: 159107},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '১০২', cls: '৬ষ্ঠ', gender: 'ছাত্র', start: 169011, end: 169032},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '১০২', cls: '৮ম', gender: 'ছাত্র', start: 189097, end: 189118},
+  
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '১০৩', cls: '৫ম', gender: 'ছাত্র', start: 159108, end: 159129},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '১০৩', cls: '৮ম', gender: 'ছাত্র', start: 189119, end: 189140},
+  
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '২০১', cls: '৫ম', gender: 'ছাত্র', start: 159130, end: 159140},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '২০১', cls: '৬ষ্ঠ', gender: 'ছাত্র', start: 169033, end: 169037},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '২০১', cls: '৭ম', gender: 'ছাত্র', start: 179155, end: 179167},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '২০১', cls: '৮ম', gender: 'ছাত্র', start: 189141, end: 189159},
+  
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '২০২', cls: '৭ম', gender: 'ছাত্র', start: 179168, end: 179191},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '২০২', cls: '৯ম', gender: 'ছাত্র', start: 199001, end: 199023},
+  
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '২০৩', cls: '৬ষ্ঠ', gender: 'ছাত্র', start: 169038, end: 169053},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '২০৩', cls: '৭ম', gender: 'ছাত্র', start: 179192, end: 179195},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '২০৩', cls: '৯ম', gender: 'ছাত্র', start: 199026, end: 199045},
+  
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '৩০১', cls: '৬ষ্ঠ', gender: 'ছাত্র', start: 169025, end: 169054},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '৩০১', cls: '৬ষ্ঠ', gender: 'ছাত্র', start: 169179, end: 169179},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '৩০১', cls: '৯ম', gender: 'ছাত্র', start: 199024, end: 199025},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '৩০১', cls: '৯ম', gender: 'ছাত্র', start: 199046, end: 199047},
+  {building: 'উচ্চ মাধ্যমিক ভবন', room: '৩০১', cls: '১০ম', gender: 'ছাত্রী', start: 119035, end: 119051},
+
+  {building: 'কলেজ ভবন', room: '১০১', cls: '৪র্থ', gender: 'ছাত্রী', start: 144112, end: 149157},
+  {building: 'কলেজ ভবন', room: '১০১', cls: '৬ষ্ঠ', gender: 'ছাত্রী', start: 164073, end: 164083},
+  {building: 'কলেজ ভবন', room: '১০১', cls: '৭ম', gender: 'ছাত্রী', start: 174111, end: 174130},
+  {building: 'কলেজ ভবন', room: '১০১', cls: '৯ম', gender: 'ছাত্রী', start: 194066, end: 194085},
+  
+  {building: 'কলেজ ভবন', room: '১০২', cls: '৬ষ্ঠ', gender: 'ছাত্রী', start: 164084, end: 164104},
+  {building: 'কলেজ ভবন', room: '১০২', cls: '৭ম', gender: 'ছাত্রী', start: 174131, end: 174154},
+  {building: 'কলেজ ভবন', room: '১০২', cls: '৯ম', gender: 'ছাত্রী', start: 194086, end: 194100},
+  
+  {building: 'কলেজ ভবন', room: '২০১', cls: '৪র্থ', gender: 'ছাত্রী', start: 144063, end: 144088},
+  {building: 'কলেজ ভবন', room: '২০১', cls: '৮ম', gender: 'ছাত্রী', start: 184001, end: 184026},
+  {building: 'কলেজ ভবন', room: '২০১', cls: '১০ম', gender: 'ছাত্রী', start: 114001, end: 114026},
+  
+  {building: 'কলেজ ভবন', room: '২০২', cls: '৪র্থ', gender: 'ছাত্রী', start: 144089, end: 144111},
+  {building: 'কলেজ ভবন', room: '২০২', cls: '৭ম', gender: 'ছাত্রী', start: 174001, end: 174015},
+  {building: 'কলেজ ভবন', room: '২০২', cls: '৮ম', gender: 'ছাত্রী', start: 184078, end: 184096},
+  {building: 'কলেজ ভবন', room: '২০২', cls: '১০ম', gender: 'ছাত্রী', start: 114027, end: 114034},
+  
+  {building: 'কলেজ ভবন', room: '২০৩', cls: '৫ম', gender: 'ছাত্রী', start: 154001, end: 154016},
+  {building: 'কলেজ ভবন', room: '২০৩', cls: '৭ম', gender: 'ছাত্রী', start: 174016, end: 174031},
+  {building: 'কলেজ ভবন', room: '২০৩', cls: '৮ম', gender: 'ছাত্রী', start: 184027, end: 184042},
+  
+  {building: 'কলেজ ভবন', room: '২০৪', cls: '৫ম', gender: 'ছাত্রী', start: 154017, end: 154030},
+  {building: 'কলেজ ভবন', room: '২০৪', cls: '৭ম', gender: 'ছাত্রী', start: 174032, end: 174045},
+  {building: 'কলেজ ভবন', room: '২০৪', cls: '৮ম', gender: 'ছাত্রী', start: 184043, end: 184056},
+  
+  {building: 'কলেজ ভবন', room: '২০৫', cls: '৫ম', gender: 'ছাত্রী', start: 154031, end: 154045},
+  {building: 'কলেজ ভবন', room: '২০৫', cls: '৭ম', gender: 'ছাত্রী', start: 174046, end: 174060},
+  {building: 'কলেজ ভবন', room: '২০৫', cls: '৮ম', gender: 'ছাত্রী', start: 184057, end: 184071},
+  
+  {building: 'কলেজ ভবন', room: '২০৬', cls: '৫ম', gender: 'ছাত্রী', start: 154046, end: 154075},
+  {building: 'কলেজ ভবন', room: '২০৬', cls: '৭ম', gender: 'ছাত্রী', start: 174061, end: 174110},
+  {building: 'কলেজ ভবন', room: '২০৬', cls: '৮ম', gender: 'ছাত্রী', start: 184072, end: 184073},
+  {building: 'কলেজ ভবন', room: '২০৬', cls: '৯ম', gender: 'ছাত্রী', start: 194048, end: 194065}
+];
+
+function showTab(tabId) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+  document.querySelector(`.tab[onclick="showTab('${tabId}')"]`).classList.add('active');
+  document.getElementById(tabId).style.display = 'block';
+}
+
+function searchRoll() {
+  const rollInput = document.getElementById('searchRoll').value;
+  const errorMessage = document.getElementById('errorMessage');
+  const box = document.getElementById('resultBox');
+  
+  if (!/^[0-9]+$/.test(rollInput)) {
+    errorMessage.style.display = 'block';
+    box.style.display = 'none';
+    return;
+  }
+  
+  errorMessage.style.display = 'none';
+  const roll = parseInt(rollInput);
+  const result = data.find(d => roll >= d.start && roll <= d.end);
+  
+  if (result && !isNaN(roll)) {
+    box.style.display = 'block';
+    document.getElementById('resBuilding').textContent = result.building;
+    document.getElementById('resRoom').textContent = result.room;
+    document.getElementById('resClass').textContent = result.cls;
+    document.getElementById('resGender').textContent = result.gender;
+    document.getElementById('resRoll').textContent = roll;
+  } else {
+    box.style.display = 'none';
+    alert('দুঃখিত! এই রোল নম্বরটি খুঁজে পাওয়া যায়নি। দয়া করে সঠিক রোল নম্বর দিন।');
+  }
+}
+
+function calculateBuildingSummaries() {
+  const primaryData = data.filter(d => d.building === 'প্রাথমিক ভবন');
+  const primaryRooms = [...new Set(primaryData.map(d => d.room))];
+  
+  let primaryTotal = 0;
+  let primaryRoomDetails = [];
+  
+  primaryRooms.forEach(room => {
+    const roomData = primaryData.filter(d => d.room === room);
+    let roomTotal = 0;
+    
+    roomData.forEach(d => {
+      const startRoll = parseInt(d.start.toString().slice(-3));
+      const endRoll = parseInt(d.end.toString().slice(-3));
+      roomTotal += (endRoll - startRoll + 1);
+    });
+    
+    primaryTotal += roomTotal;
+    primaryRoomDetails.push(`${room} রুম: ${roomTotal}`);
+  });
+  
+  document.getElementById('primary-summary').innerHTML = `
+    <strong>প্রাথমিক ভবনের সারাংশ:</strong><br>
+    মোট রুম: ${primaryRooms.length}<br>
+    মোট ছাত্র/ছাত্রী: ${primaryTotal} (${primaryRoomDetails.join(', ')})
+  `;
+  
+  const secondaryData = data.filter(d => d.building === 'উচ্চ মাধ্যমিক ভবন');
+  const secondaryRooms = [...new Set(secondaryData.map(d => d.room))];
+  
+  let secondaryTotal = 0;
+  let secondaryRoomDetails = [];
+  
+  secondaryRooms.forEach(room => {
+    const roomData = secondaryData.filter(d => d.room === room);
+    let roomTotal = 0;
+    
+    roomData.forEach(d => {
+      const startRoll = parseInt(d.start.toString().slice(-3));
+      const endRoll = parseInt(d.end.toString().slice(-3));
+      roomTotal += (endRoll - startRoll + 1);
+    });
+    
+    secondaryTotal += roomTotal;
+    secondaryRoomDetails.push(`${room} রুম: ${roomTotal}`);
+  });
+  
+  document.getElementById('secondary-summary').innerHTML = `
+    <strong>উচ্চ মাধ্যমিক ভবনের সারাংশ:</strong><br>
+    মোট রুম: ${secondaryRooms.length}<br>
+    মোট ছাত্র/ছাত্রী: ${secondaryTotal} (${secondaryRoomDetails.join(', ')})
+  `;
+  
+  const collegeData = data.filter(d => d.building === 'কলেজ ভবন');
+  const collegeRooms = [...new Set(collegeData.map(d => d.room))];
+  
+  let collegeTotal = 0;
+  let collegeRoomDetails = [];
+  
+  collegeRooms.forEach(room => {
+    const roomData = collegeData.filter(d => d.room === room);
+    let roomTotal = 0;
+    
+    roomData.forEach(d => {
+      const startRoll = parseInt(d.start.toString().slice(-3));
+      const endRoll = parseInt(d.end.toString().slice(-3));
+      roomTotal += (endRoll - startRoll + 1);
+    });
+    
+    collegeTotal += roomTotal;
+    collegeRoomDetails.push(`${room} রুম: ${roomTotal}`);
+  });
+  
+  document.getElementById('college-summary').innerHTML = `
+    <strong>কলেজ ভবনের সারাংশ:</strong><br>
+    মোট রুম: ${collegeRooms.length}<br>
+    মোট ছাত্র/ছাত্রী: ${collegeTotal} (${collegeRoomDetails.join(', ')})
+  `;
+}
+
+document.getElementById('searchRoll').addEventListener('keypress', function(event) {
+  if (event.key === 'Enter') {
+    searchRoll();
+  }
+});
+
+document.getElementById('searchRoll').addEventListener('input', function(event) {
+  const errorMessage = document.getElementById('errorMessage');
+  if (!/^[0-9]*$/.test(this.value)) {
+    errorMessage.style.display = 'block';
+  } else {
+    errorMessage.style.display = 'none';
+  }
+});
+
+showTab('primary');
+calculateBuildingSummaries();
+</script>
+
+</body>
+</html>
